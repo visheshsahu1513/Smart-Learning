@@ -1,0 +1,5 @@
+# Created at 2025-09-08T12:09:25.462
+Boot Manifest-JAR contains absolute paths in classpath 'D:\Quantiphi\USE_CASE\Mock Project\backend-springboot\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+

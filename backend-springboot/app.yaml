@@ -1,0 +1,16 @@
+runtime: java17
+service: springboot-service
+instance_class: F2  # <<<--- THE ONLY CHANGE NEEDED
+
+env_variables:
+  SPRING_PROFILES_ACTIVE: production
+
+automatic_scaling:
+  min_instances: 1
+  max_instances: 1
+
+# It's good practice to keep these health checks
+liveness_check:
+  initial_delay_sec: 300
+readiness_check:
+  app_start_timeout_sec: 300
