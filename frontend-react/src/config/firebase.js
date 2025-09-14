@@ -4,7 +4,7 @@ import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration from the Firebase console
 const firebaseConfig = {
-  apiKey: "AIzaSyCyeRxmJJkiWQBkp3vHmrpZ9_cNcQ1mef0",
+  apiKey: "googleapikey",
   authDomain: "smartlearning-300c0.firebaseapp.com",
   projectId: "smartlearning-300c0",
   storageBucket: "smartlearning-300c0.firebasestorage.app", // Corrected from your .env file
@@ -18,4 +18,5 @@ const app = initializeApp(firebaseConfig);
 // Export the services we need in other parts of our app
 export const auth = getAuth(app);
 export const storage = getStorage(app);
+
 export default app;
