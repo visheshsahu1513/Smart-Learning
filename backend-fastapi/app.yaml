@@ -1,0 +1,57 @@
+# Specifies the runtime environment
+runtime: python311
+
+# The command that starts your web server
+entrypoint: uvicorn app.main:app --host 0.0.0.0 --port 8080
+
+# App Engine's default service handles all traffic
+service: default
+
+# Instance class and scaling settings for cost control
+instance_class: F1
+automatic_scaling:
+  min_instances: 0
+  max_instances: 1
+
+# Environment variables for your production database connection
+env_variables:
+  DB_USER: "postgres"
+  DB_PASS: "j=Vr;AvLdyi#Qm0-" # This should be your actual saved password
+  DB_NAME: "smartlearning"
+  DB_CONNECTION_NAME: "smartlearning-300c0:us-central1:smartlearning-db"
+
+# --- THIS IS THE NEW, CRUCIAL SECTION ---
+# This section enforces HTTPS for all API calls.
+handlers:
+# This rule matches any URL that starts with /api/
+- url: /api/.*
+  # 'script: auto' tells App Engine to route this to your FastAPI application
+  script: auto
+  # 'secure: always' is the instruction that fixes the Mixed Content error.
+  # It forces all matching requests to be served over HTTPS.
+  secure: always
+
+# This is a fallback handler for all other URLs (like the root /)
+# It ensures that non-API requests are also handled by your app.
+- url: /.*
+  script: auto
+  secure: always
+
+
+
+
+# runtime: python311
+# entrypoint: uvicorn app.main:app --host 0.0.0.0 --port 8080
+# service: default
+
+# instance_class: F1
+# automatic_scaling:
+#   min_instances: 0
+#   max_instances: 1
+
+# # --- NEW: Add this section to define environment variables for production ---
+# env_variables:
+#   DB_USER: "postgres"
+#   DB_PASS: "j=Vr;AvLdyi#Qm0-"  # <-- PASTE THE PASSWORD YOU SAVED EARLIER
+#   DB_NAME: "smartlearning"
+#   DB_CONNECTION_NAME: "smartlearning-300c0:us-central1:smartlearning-db" # <-- PASTE THE CONNECTION NAME YOU COPIED
